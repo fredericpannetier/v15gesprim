@@ -36,7 +36,7 @@
         </t>
             
     </xpath>
-    <xpath expr="//tbody/t/t/tr" position="after">
+    <xpath expr="//tbody/t/tr" position="after">
         <t t-set="textes" t-value="ml.di_get_texts()" />
         <t t-foreach="textes" t-as="texte">
             <tr>
