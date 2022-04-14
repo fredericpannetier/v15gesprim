@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">        
+        <record id="di_recompute_product_pricelists" model="ir.cron">
+            <field name="name">DI Recompute product pricelists</field>
+            <field name="active">True</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="priority">0</field>
+            <field name="model_id" ref="model_product_pricelist"/>
+            <field name="doall">1</field>                        
+            <field name="code">model.env.add_to_compute(model._fields['di_products'],model.search([]))</field>            
+            <field name="nextcall" eval="(datetime.utcnow() + timedelta(days=1)).strftime('%Y-%m-%d 01:00:00')"/>            
+        </record>
+		<!-- FRPA 20220414 erreur sur modèle email
+        <record id="di_email_template_pricelist_partner" model="mail.template">
+            <field name="name">DI pricelist partner template</field>
+            <field name="model_id" ref="product_pricelist_show_all.model_di_pricelists_print_wiz"/>
+            <field name="subject">Pricelist</field>
+            <field name="partner_to">${object.partner_mail_id.id}</field>            
+            <field name="report_template" ref="product_pricelist_show_all.di_action_report_print_pricelists_partner"/>
+            <field name="report_name">Pricelist</field>
+            <field name="lang">${object.partner_mail_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="di_email_template_pricelist_partner_promo" model="mail.template">
+            <field name="name">DI pricelist partner template promo</field>
+            <field name="model_id" ref="product_pricelist_show_all.model_di_pricelists_print_wiz"/>
+            <field name="subject">Pricelist promo</field>
+            <field name="partner_to">${object.partner_mail_id.id}</field>            
+            <field name="report_template" ref="product_pricelist_show_all.di_action_report_print_pricelists_partner_promo"/>
+            <field name="report_name">Pricelist promo</field>
+            <field name="lang">${object.partner_mail_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+		-->
+
+    </data>
+</odoo>
